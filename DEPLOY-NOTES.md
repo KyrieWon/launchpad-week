@@ -14,17 +14,17 @@
 
 ## Constants
 ```js
-WHOP_CHECKOUT_URL = "https://whop.com/checkout/PLACEHOLDER-A149"
+WHOP_CHECKOUT_URL = "https://whop.com/prismengine-xyz/4-10-chinese-suppliers-comparison-report/"
 CONTACT_EMAIL = "launchpadweek@mail.grokbot.com"
-checkoutReady = !String(WHOP_CHECKOUT_URL).includes("PLACEHOLDER")
+checkoutReady = true // isLiveUrl still rejects a URL that includes "PLACEHOLDER"
 ```
-Primary CTA = waitlist until PLACEHOLDER removed.
+Primary Buy CTAs link to the live $149 Whop plan. B and C stay on the waitlist.
 
 ## Blockers (do not deploy from this agent until cleared)
-1. **Whop checkout URL** still PLACEHOLDER (parent creates SKU).
+1. **Whop checkout URL** is set in `index.html` to the live $149 plan.
 2. **Vercel team auth:** `team_Ij1tk9ouK1mPt96g4wowYB1u` (scope `alidapacewiczakb80-9741`) — MCP returned 403; needs `authorize_team_access` by parent/user.
 3. **No local git remote** for launchpad-week; connected GitHub account (`KyrieWon`) has no launchpad-week repo visible. Deploy via Vercel dashboard/CLI file upload or Cloud Agent with team auth.
 
-## After auth + Whop URL
-1. Replace PLACEHOLDER-A149 with live plan URL in `index.html`.
-2. Deploy files to existing project `launchpad-week` (same domain). Do not create a new project.
+## After auth
+1. Live plan URL is already in `index.html`. Do not swap it back to a stand-in string.
+2. Deploy files to existing project `launchpad-week` (same domain). Do not create a new project. This change does not deploy.

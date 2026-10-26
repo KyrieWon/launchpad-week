@@ -13,15 +13,14 @@
 - `vercel.json` — `cleanUrls` plus 302 `/week`, `/outbound`, `/diagnosis`, `/pricing` → `/`. `week.html` and `outbound.html` stay in the repo for reference; the redirects take precedence.
 - Archive `/workspace/launchpad-week-site/archive/2026-10-26-week-outbound/` — old Week/Outbound HTML copies kept; no live stubs stored there
 
-## PLACEHOLDER note
-- `WHOP_CHECKOUT_URL = "PLACEHOLDER"` on sales page (literal string, **not** a Whop URL)
-- `checkoutReady = true` but CTA still gated via `!url.includes("PLACEHOLDER")`
-- Primary CTA opens waitlist modal (mailto) — does **not** navigate to a fake checkout
-- Replace PLACEHOLDER with real $149 Whop plan before enabling live checkout
+## Checkout
+- `WHOP_CHECKOUT_URL` on the sales page is the live $149 Whop plan
+- `checkoutReady = true`; `isLiveUrl` still returns false if the URL includes `PLACEHOLDER`
+- Primary Buy CTAs navigate to Whop. B and C still open the waitlist modal
 
 ## Constants (sales)
 ```js
-const WHOP_CHECKOUT_URL = "PLACEHOLDER"; // RED until real $149 plan
+const WHOP_CHECKOUT_URL = "https://whop.com/prismengine-xyz/4-10-chinese-suppliers-comparison-report/"; // live $149 plan
 const CONTACT_EMAIL = "launchpadweek@mail.grokbot.com";
 const KICKOFF_URL = "";
 const checkoutReady = true; // still gate on !includes("PLACEHOLDER")
