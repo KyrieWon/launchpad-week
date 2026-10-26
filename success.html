@@ -1,0 +1,437 @@
+<!doctype html>
+<!-- S1-A success · post-pay intake for China Supplier Research Report $149 only -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%0A%20%20%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%226%22%20fill%3D%22%23161513%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M9%2022.5V9.5h9.2%22%20fill%3D%22none%22%20stroke%3D%22%23f4f1ea%22%20stroke-width%3D%222.2%22%20stroke-linecap%3D%22square%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M17.2%2013.2%2023%2019l-5.8%205.8%22%20fill%3D%22none%22%20stroke%3D%22%23c2410c%22%20stroke-width%3D%222.2%22%20stroke-linecap%3D%22square%22%20stroke-linejoin%3D%22miter%22%2F%3E%0A%3C%2Fsvg%3E%0A" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Payment received. Submit intake for your China supplier research report. Brief locks when required fields + confirm are complete — then 48–72h." />
+    <meta name="theme-color" content="#f4f1ea" />
+    <title>After checkout — Supplier Research Report</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Outfit:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+:root {
+  --paper: #f4f1ea;
+  --ink: #161513;
+  --muted: #4a453c;
+  --faint: #6f685c;
+  --line: #e3dcd0;
+  --card: #fbf9f4;
+  --scope: #ebe4d8;
+  --accent: #9a3412;
+  --max: 42rem;
+  --radius: 10px;
+  --cta-h: 3.25rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { background: var(--paper); }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Outfit", "Avenir Next", "Segoe UI", sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: #ead8c4; }
+main {
+  width: min(100%, var(--max));
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 3.5rem;
+}
+.eyebrow {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+h1, h2 {
+  font-family: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  font-weight: 400;
+}
+h1 {
+  margin: 0.75rem 0 0.85rem;
+  font-size: clamp(1.85rem, 5.5vw, 2.45rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+h2 {
+  margin: 0 0 0.85rem;
+  font-size: clamp(1.35rem, 3.5vw, 1.65rem);
+  line-height: 1.25;
+}
+.subhead {
+  margin: 0 0 1.25rem;
+  color: var(--muted);
+  font-size: 1.02rem;
+  max-width: 36rem;
+}
+.confirm-box {
+  margin: 0 0 1.75rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+.confirm-box strong { display: block; margin-bottom: 0.35rem; }
+.confirm-box p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+.lock-note {
+  margin: 0 0 1.75rem;
+  padding: 0.95rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  background: #f7efe4;
+  border-radius: 0 8px 8px 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.section-label {
+  margin: 0 0 0.35rem;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.intake {
+  display: grid;
+  gap: 1rem;
+  padding: 1.35rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+}
+.field { display: grid; gap: 0.35rem; }
+.field label {
+  font-size: 0.88rem;
+  font-weight: 550;
+}
+.req { color: var(--accent); }
+.hint {
+  color: var(--faint);
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  font: inherit;
+  color: var(--ink);
+}
+.field textarea { min-height: 4.5rem; resize: vertical; }
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible,
+.cta:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.optional-grid {
+  display: grid;
+  gap: 1rem;
+}
+@media (min-width: 560px) {
+  .optional-grid { grid-template-columns: 1fr 1fr; }
+}
+.check-row {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+.check-row input {
+  margin-top: 0.25rem;
+  width: 1.1rem;
+  height: 1.1rem;
+  flex-shrink: 0;
+}
+.check-row label {
+  font-size: 0.92rem;
+  line-height: 1.45;
+  font-weight: 500;
+}
+.cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: var(--cta-h);
+  padding: 0.8rem 1.4rem;
+  border: 0;
+  border-radius: 8px;
+  background: var(--ink);
+  color: #f7f4ee;
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.cta:hover { background: #2c2926; }
+.cta:disabled {
+  background: #8a8378;
+  cursor: not-allowed;
+}
+.form-error {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.9rem;
+}
+.form-error[hidden] { display: none !important; }
+.alt {
+  margin: 1rem 0 0;
+  color: var(--faint);
+  font-size: 0.88rem;
+}
+.alt a { color: var(--muted); }
+.soon {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+.soon p {
+  margin: 0 0 0.75rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.btn-quiet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0.45rem 0.95rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 550;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn-quiet:hover { background: var(--scope); }
+.site-footer {
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+.footer-sale {
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.footer-meta {
+  margin: 0;
+  color: var(--faint);
+  font-size: 0.82rem;
+}
+.footer-meta a { color: var(--muted); }
+.back {
+  display: inline-block;
+  margin-bottom: 1.25rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+.back:hover { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a class="back" href="/">← Back to report</a>
+      <p class="eyebrow">Payment received · S1-A</p>
+      <h1>Confirm your research brief</h1>
+      <p class="subhead">
+        You purchased the <strong>Desktop Research Report — $149</strong> only.
+        Submit intake below. We do not sell WeChat outreach or on-site visits on this order.
+      </p>
+
+      <div class="confirm-box">
+        <strong>What happens next</strong>
+        <p>
+          Required fields + confirm → we email brief lock → <strong>48–72h clock starts</strong> → English ranked report (4–10 suppliers).
+        </p>
+      </div>
+
+      <p class="lock-note">
+        Brief locks when Category, Target market, Contact email, and the confirm checkbox are complete. Clock starts after brief-lock email — not at payment alone.
+      </p>
+
+      <p class="section-label">Intake</p>
+      <h2>Tell us what to research</h2>
+
+      <form class="intake" id="intake-form" novalidate>
+        <div class="field">
+          <label for="category">Category <span class="req">*</span> <span class="hint">e.g. Auto parts — brake pads</span></label>
+          <input id="category" name="category" type="text" required autocomplete="off" />
+        </div>
+
+        <div class="field">
+          <label for="market">Target market <span class="req">*</span></label>
+          <select id="market" name="market" required>
+            <option value="">Select…</option>
+            <option value="US">US</option>
+            <option value="EU">EU</option>
+            <option value="Both">Both</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="email">Contact email <span class="req">*</span> <span class="hint">Delivery inbox</span></label>
+          <input id="email" name="email" type="email" required autocomplete="email" />
+        </div>
+
+        <div class="optional-grid">
+          <div class="field">
+            <label for="subfocus">Sub-focus <span class="hint">optional</span></label>
+            <input id="subfocus" name="subfocus" type="text" placeholder="Material, cert preference…" />
+          </div>
+          <div class="field">
+            <label for="buyer">Buyer type <span class="hint">optional</span></label>
+            <select id="buyer" name="buyer">
+              <option value="">Select…</option>
+              <option value="Importer">Importer</option>
+              <option value="Brand">Brand</option>
+              <option value="Distributor">Distributor</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="musthave">Must-have signals <span class="hint">optional</span></label>
+          <input id="musthave" name="musthave" type="text" placeholder="e.g. export experience, manufacturer preference" />
+        </div>
+
+        <div class="field">
+          <label for="exclude">Exclude <span class="hint">optional</span></label>
+          <input id="exclude" name="exclude" type="text" placeholder="e.g. pure traders, certain regions" />
+        </div>
+
+        <div class="field">
+          <label for="known">Known names to include/exclude <span class="hint">optional</span></label>
+          <input id="known" name="known" type="text" placeholder="Factory names you already know" />
+        </div>
+
+        <div class="field">
+          <label for="depth">Depth note <span class="hint">optional</span></label>
+          <textarea id="depth" name="depth" placeholder="Dimensions you especially want compared"></textarea>
+        </div>
+
+        <div class="check-row">
+          <input id="confirm" name="confirm" type="checkbox" required />
+          <label for="confirm">
+            I understand this $149 report does not include WeChat outreach or on-site visits, and that B and C are not available for purchase yet. <span class="req">*</span>
+          </label>
+        </div>
+
+        <p class="form-error" id="form-error" hidden>Please complete Category, Target market, Contact email, and the confirm checkbox.</p>
+
+        <button type="submit" class="cta" id="submit-btn">Submit intake &amp; lock brief</button>
+        <p class="alt">
+          Prefer email?
+          <a id="mailto-fallback" href="mailto:launchpadweek@mail.grokbot.com">Send the same fields to launchpadweek@mail.grokbot.com</a>
+        </p>
+      </form>
+
+      <div class="soon">
+        <p class="section-label">Coming soon</p>
+        <p>Factory outreach (B) and on-site short video (C) are on the roadmap — not included in this purchase and not for sale today.</p>
+        <a class="btn-quiet" id="waitlist-link" href="mailto:launchpadweek@mail.grokbot.com?subject=Waitlist%20S1-B%2FC%20deeper%20diligence">Join B/C waitlist by email</a>
+      </div>
+
+      <footer class="site-footer">
+        <p class="footer-sale">Only the $149 research report is for sale today.</p>
+        <p class="footer-meta">
+          Questions:
+          <a id="contact-link" href="mailto:launchpadweek@mail.grokbot.com">launchpadweek@mail.grokbot.com</a>
+        </p>
+      </footer>
+    </main>
+
+    <script>
+(function () {
+  const CONTACT_EMAIL = "launchpadweek@mail.grokbot.com";
+  const WHOP_CHECKOUT_URL = "PLACEHOLDER"; // not used on success; kept for ops parity
+  const KICKOFF_URL = "";
+  const checkoutReady = true;
+
+  document.querySelectorAll("#contact-link, #mailto-fallback, #waitlist-link").forEach((el) => {
+    if (!el) return;
+    if (el.id === "waitlist-link") {
+      el.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Waitlist S1-B/C deeper diligence")}`;
+    } else if (el.id === "mailto-fallback") {
+      el.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("S1-A intake — China Supplier Research Report")}`;
+      el.textContent = `Send the same fields to ${CONTACT_EMAIL}`;
+    } else {
+      el.href = `mailto:${CONTACT_EMAIL}`;
+      el.textContent = CONTACT_EMAIL;
+    }
+  });
+
+  const form = document.querySelector("#intake-form");
+  const err = document.querySelector("#form-error");
+
+  function val(id) {
+    return (document.querySelector("#" + id)?.value || "").trim();
+  }
+
+  form?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const category = val("category");
+    const market = val("market");
+    const email = val("email");
+    const confirmed = document.querySelector("#confirm")?.checked;
+
+    if (!category || !market || !email || !email.includes("@") || !confirmed) {
+      if (err) err.hidden = false;
+      return;
+    }
+    if (err) err.hidden = true;
+
+    const lines = [
+      "S1-A intake — China Supplier Research Report ($149)",
+      "",
+      `Category*: ${category}`,
+      `Target market*: ${market}`,
+      `Contact email*: ${email}`,
+      `Confirm*: yes — understands no WeChat/on-site; B/C not for sale`,
+      "",
+      `Sub-focus: ${val("subfocus") || "—"}`,
+      `Buyer type: ${val("buyer") || "—"}`,
+      `Must-have: ${val("musthave") || "—"}`,
+      `Exclude: ${val("exclude") || "—"}`,
+      `Known names: ${val("known") || "—"}`,
+      `Depth note: ${val("depth") || "—"}`,
+      "",
+      "Please reply with brief-lock confirmation so the 48–72h clock can start.",
+    ];
+
+    const subject = encodeURIComponent("S1-A intake — China Supplier Research Report");
+    const body = encodeURIComponent(lines.join("\n"));
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+  });
+
+  void WHOP_CHECKOUT_URL;
+  void KICKOFF_URL;
+  void checkoutReady;
+})();
+    </script>
+  </body>
+</html>

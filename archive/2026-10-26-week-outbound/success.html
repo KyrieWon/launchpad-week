@@ -1,0 +1,1234 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%0A%20%20%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%226%22%20fill%3D%22%23161513%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M9%2022.5V9.5h9.2%22%20fill%3D%22none%22%20stroke%3D%22%23f4f1ea%22%20stroke-width%3D%222.2%22%20stroke-linecap%3D%22square%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M17.2%2013.2%2023%2019l-5.8%205.8%22%20fill%3D%22none%22%20stroke%3D%22%23c2410c%22%20stroke-width%3D%222.2%22%20stroke-linecap%3D%22square%22%20stroke-linejoin%3D%22miter%22%2F%3E%0A%3C%2Fsvg%3E%0A" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Post-checkout: send intake, then confirm the emailed brief. No live call." />
+    <meta name="theme-color" content="#f4f1ea" />
+    <title>After checkout — Launchpad Week</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Outfit:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+:root {
+  --paper: #f4f1ea;
+  --ink: #161513;
+  --muted: #4a453c;
+  --faint: #6f685c;
+  --line: #e3dcd0;
+  --card: #fbf9f4;
+  --scope: #ebe4d8;
+  --accent: #9a3412;
+  --accent-soft: #c2410c;
+  --max: 42rem;
+  --space-1: 0.5rem;
+  --space-2: 0.75rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+  --space-6: 3rem;
+  --radius: 10px;
+  --cta-h: 3.25rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--paper);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Outfit", "Avenir Next", "Segoe UI", sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 5.5rem;
+}
+
+@media (min-width: 640px) {
+  body {
+    padding-bottom: 0;
+  }
+}
+
+::selection {
+  background: #ead8c4;
+}
+
+main {
+  width: min(100%, var(--max));
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 3.5rem;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+.amount,
+.num {
+  font-family: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  font-weight: 400;
+}
+
+h1 {
+  margin: 0.75rem 0 0.85rem;
+  font-size: clamp(2rem, 6.5vw, 2.85rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.subhead {
+  margin: 0 0 1.35rem;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.45;
+  max-width: 34rem;
+}
+
+.price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+  margin: 0 0 1rem;
+}
+
+.amount {
+  font-size: clamp(2.6rem, 8vw, 3.15rem);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+}
+
+.cadence {
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: var(--cta-h);
+  padding: 0.8rem 1.4rem;
+  border: 0;
+  border-radius: 8px;
+  background: var(--ink);
+  color: #f7f4ee;
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.cta:visited {
+  color: #f7f4ee;
+}
+
+.cta:hover {
+  background: #2c2926;
+}
+
+.cta:active {
+  transform: translateY(1px);
+}
+
+.cta:focus-visible,
+.upsell a:focus-visible,
+.faq summary:focus-visible,
+.sticky-cta a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.cta-note {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin: 1.15rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.trust li {
+  color: var(--faint);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.trust li::before {
+  content: "✓ ";
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+  margin: 1.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 28%;
+  height: 1px;
+  background: var(--line);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.timeline li {
+  position: relative;
+  z-index: 1;
+  padding: 0.85rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  text-align: center;
+}
+
+.timeline .t-label {
+  display: block;
+  color: var(--accent);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.timeline .t-copy {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.hero-visual {
+  margin: 1.25rem 0 0;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--card);
+}
+
+.hero-visual svg,
+.pack-visual svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal.d1 {
+  transition-delay: 0.06s;
+}
+
+.reveal.d2 {
+  transition-delay: 0.12s;
+}
+
+.reveal.d3 {
+  transition-delay: 0.18s;
+}
+
+.reveal.d4 {
+  transition-delay: 0.24s;
+}
+
+.value-band .value-grid {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 640px) {
+  .value-band .value-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.value-card {
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--card);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-2px);
+  border-color: #d4c4b0;
+}
+
+.value-ico {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-bottom: 0.75rem;
+  border-radius: 50%;
+  background: #efe6d8;
+}
+
+.value-ico svg {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.value-card strong {
+  display: block;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 0.35rem;
+}
+
+.value-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.pack-visual {
+  margin: 0 0 1.25rem;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--card);
+}
+
+section {
+  margin-top: var(--space-6);
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+
+h2 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.55rem, 4vw, 1.95rem);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.lede {
+  margin: 0 0 1.15rem;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+.deliverables,
+.metrics,
+.scope {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.deliverables li {
+  display: grid;
+  grid-template-columns: 2.25rem 2.25rem 1fr;
+  gap: 0.15rem 0.65rem;
+  align-items: start;
+  padding: 1.05rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.deliverables li:first-child {
+  padding-top: 0.2rem;
+  border-top: 0;
+}
+
+.num {
+  color: var(--accent);
+  font-size: 1.35rem;
+  line-height: 1.25;
+  font-variant-numeric: tabular-nums;
+}
+
+.ico {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-top: 0.1rem;
+}
+
+.ico svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+}
+
+.deliverables strong {
+  display: block;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.deliverables li > div > span {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+.metrics {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.metrics li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.metrics .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex: 0 0 auto;
+  margin-top: 0.1rem;
+  padding: 0.12rem 0.4rem;
+  border-radius: 4px;
+  background: #efe6d8;
+  color: var(--accent);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.metrics .badge svg {
+  display: block;
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+}
+
+.metrics .m-body {
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.soft {
+  margin: 0.95rem 0 0;
+  color: var(--faint);
+  font-size: 0.92rem;
+}
+
+.scope {
+  padding: 0.35rem 1rem;
+  border-radius: 12px;
+  background: var(--scope);
+}
+
+.scope li {
+  padding: 0.85rem 0 0.85rem 1.35rem;
+  border-top: 1px solid #ddd4c4;
+  position: relative;
+  color: var(--muted);
+}
+
+.scope li:first-child {
+  border-top: 0;
+}
+
+.scope li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: var(--faint);
+}
+
+.faq {
+  margin: 0;
+}
+
+.faq details {
+  border-top: 1px solid var(--line);
+}
+
+.faq details:first-of-type {
+  border-top: 0;
+}
+
+.faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  cursor: pointer;
+  font-weight: 600;
+  list-style: none;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: "+";
+  color: var(--accent);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.faq details[open] summary::after {
+  content: "–";
+}
+
+.faq .a {
+  margin: 0 0 1.1rem;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+.closing .price {
+  margin-top: 0.85rem;
+}
+
+.upsell {
+  margin: 1.6rem 0 0;
+  padding: 1.15rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+.upsell a {
+  color: var(--ink);
+  font-weight: 600;
+  text-underline-offset: 0.18em;
+}
+
+.upsell a:hover {
+  color: var(--accent);
+}
+
+.footer-meta {
+  margin: 2rem 0 0;
+  color: var(--faint);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.sticky-cta {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line);
+  background: rgba(244, 241, 234, 0.94);
+  backdrop-filter: blur(10px);
+}
+
+.sticky-cta .price-mini {
+  flex: 1;
+  min-width: 0;
+}
+
+.sticky-cta .amount-mini {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.sticky-cta .cadence-mini {
+  display: block;
+  margin-top: 0.15rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.sticky-cta .cta {
+  flex: 1.4;
+  min-height: 3rem;
+  font-size: 0.98rem;
+}
+
+@media (min-width: 640px) {
+  main {
+    padding: 4.5rem 1.5rem 5rem;
+  }
+
+  .cta {
+    display: inline-flex;
+    width: auto;
+    min-width: 14.5rem;
+  }
+
+  .metrics {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .sticky-cta {
+    display: none;
+  }
+}
+
+
+/* Sequence dimming — only while .is-sequencing */
+.timeline.is-sequencing li {
+  opacity: 0.42;
+  border-color: var(--line);
+  border-top-width: 1px;
+  border-top-color: var(--line);
+  transition: opacity 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+}
+.timeline.is-sequencing li.is-active {
+  opacity: 1;
+  border-color: var(--accent);
+  border-top: 2px solid var(--accent);
+  box-shadow: 0 4px 14px rgba(154, 52, 18, 0.12);
+  transform: translateY(-2px);
+}
+.timeline li.is-done {
+  opacity: 1;
+}
+
+.hero-visual.is-sequencing .flow-step {
+  opacity: 0.4;
+  transition: opacity 0.35s ease;
+}
+.hero-visual.is-sequencing .flow-step.is-active {
+  opacity: 1;
+}
+.hero-visual .flow-step .step-frame {
+  stroke: #e3dcd0;
+  stroke-width: 1.5;
+  transition: stroke 0.35s ease, stroke-width 0.35s ease;
+}
+.hero-visual .flow-step.is-active .step-frame {
+  stroke: #9a3412;
+  stroke-width: 2.5;
+}
+.hero-visual .flow-step.is-done {
+  opacity: 1;
+}
+.hero-visual .flow-arrow {
+  opacity: 0.35;
+  transition: opacity 0.35s ease;
+}
+.hero-visual.is-sequencing .flow-arrow.is-lit,
+.hero-visual .flow-arrow.is-done {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .cta:active {
+    transform: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .value-card:hover {
+    transform: none;
+  }
+
+  .timeline.is-sequencing li,
+  .hero-visual.is-sequencing .flow-step {
+    opacity: 1;
+    transform: none;
+  }
+
+  .timeline.is-sequencing li.is-active {
+    transform: none;
+  }
+}
+
+.cta-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.35rem;
+}
+
+.btn-quiet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.45rem 0.2rem;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.98rem;
+  font-weight: 600;
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  cursor: pointer;
+}
+
+.btn-quiet:hover {
+  color: var(--accent);
+}
+
+.btn-quiet:focus-visible,
+.deliverable:focus-visible,
+.value-card:focus-visible,
+.sample-tabs button:focus-visible,
+.modal-close:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.value-grid > li > a.value-card {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.value-card:hover {
+  transform: none;
+}
+
+.timeline.is-sequencing li.is-active {
+  transform: none;
+}
+
+.deliverables li {
+  display: block;
+  padding: 0;
+}
+
+.deliverables a.deliverable {
+  display: grid;
+  grid-template-columns: 2.25rem 2.25rem 1fr;
+  gap: 0.15rem 0.65rem;
+  align-items: start;
+  padding: 1.05rem 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.deliverables li:first-child a.deliverable {
+  padding-top: 0.2rem;
+}
+
+.sample-hint {
+  grid-column: 3;
+  margin-top: 0.35rem;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.faq details:not([open]) > :not(summary) {
+  display: none;
+}
+
+.ask-row {
+  margin: 1rem 0 0;
+}
+
+.outbound-list {
+  margin: 0 0 1.15rem;
+  padding: 0;
+  list-style: none;
+}
+
+.outbound-list li {
+  padding: 0.7rem 0 0.7rem 1.2rem;
+  border-top: 1px solid var(--line);
+  position: relative;
+}
+
+.outbound-list li:first-child {
+  border-top: 0;
+}
+
+.outbound-list li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: var(--faint);
+}
+
+.outbound-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.outbound-start[hidden] {
+  display: none;
+}
+
+body.modal-open {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+body.modal-open .sticky-cta {
+  visibility: hidden;
+}
+
+.modal[hidden] {
+  display: none;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  align-items: end;
+  justify-items: center;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(22, 21, 19, 0.48);
+}
+
+.modal-panel {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 40rem);
+  max-height: min(92vh, 44rem);
+  overflow: auto;
+  margin: 0;
+  padding: 1.15rem 1.2rem 1.4rem;
+  border: 1px solid var(--line);
+  border-radius: 12px 12px 0 0;
+  background: var(--paper);
+  box-shadow: 0 18px 50px rgba(22, 21, 19, 0.18);
+}
+
+.modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.modal-head h2 {
+  margin: 0;
+}
+
+.modal-close {
+  flex: 0 0 auto;
+  min-height: 2.5rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.modal-copy {
+  margin: 0.85rem 0 1rem;
+  color: var(--muted);
+}
+
+.waitlist-form {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.waitlist-form label {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.waitlist-form input {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 400;
+}
+
+.waitlist-form input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.field-error {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.35rem;
+}
+
+.sample-badge {
+  display: inline-block;
+  margin: 0 0 0.45rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  background: #efe6d8;
+  color: var(--accent);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.sample-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.9rem 0 0.85rem;
+}
+
+.sample-tabs button {
+  min-height: 2.4rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.sample-tabs button[aria-selected="true"] {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: #f7f4ee;
+}
+
+.sample-copy {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--ink);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  overflow: auto;
+  max-height: 46vh;
+}
+
+.sample-copy + .sample-copy {
+  margin-top: 0.65rem;
+}
+
+@media (min-width: 640px) {
+  .cta-actions {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .btn-quiet {
+    width: auto;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+  }
+
+  .modal {
+    align-items: center;
+    padding: 1.5rem;
+  }
+
+  .modal-panel {
+    border-radius: 12px;
+  }
+
+  .modal-actions,
+  .outbound-actions {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .value-card:hover {
+    transform: none;
+  }
+}
+
+    
+.demo-banner {
+  margin: 0 0 1.25rem;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #d4c4b0;
+  background: #efe6d8;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+.demo-banner strong { color: var(--accent); font-weight: 600; }
+.next-steps {
+  display: grid;
+  gap: 0.65rem;
+  margin: 1.15rem 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: ns;
+}
+.next-steps li {
+  counter-increment: ns;
+  display: grid;
+  grid-template-columns: 2.25rem 1fr;
+  gap: 0.65rem;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--card);
+}
+.next-steps .ns-num {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 1.35rem;
+  color: var(--accent);
+  line-height: 1.2;
+}
+.next-steps .ns-num::before { content: counter(ns, decimal-leading-zero); }
+.next-steps strong { display: block; font-weight: 600; margin-bottom: 0.2rem; }
+.next-steps span { color: var(--muted); font-size: 0.92rem; }
+    
+.text-link { color: var(--ink); font-weight: 600; text-underline-offset: 0.18em; }
+.text-link:hover { color: var(--accent); }
+.cta-note { margin: 0.75rem 0 0; color: var(--muted); font-size: 0.95rem; }
+.intake { display: grid; gap: 0.85rem; margin-top: 0.5rem; }
+.intake label { display: grid; gap: 0.35rem; font-weight: 600; font-size: 0.92rem; }
+.intake input, .intake textarea, .intake select {
+  width: 100%; min-height: 2.75rem; padding: 0.55rem 0.75rem;
+  border: 1px solid var(--line); border-radius: 8px; background: var(--card);
+  color: var(--ink); font: inherit; font-weight: 400;
+}
+.intake textarea { min-height: 5rem; resize: vertical; }
+.intake input:focus-visible, .intake textarea:focus-visible, .intake select:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 2px;
+}
+.steps { margin: 0; padding: 0; list-style: none; }
+.steps li { padding: 0.75rem 0; border-top: 1px solid var(--line); color: var(--muted); }
+.steps li:first-child { border-top: 0; padding-top: 0; }
+.steps strong { color: var(--ink); }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header class="hero">
+        <p class="eyebrow">Launchpad Week</p>
+        <p class="demo-banner" role="status"><strong>Preview page</strong> — shown for demo when there is no live Whop return URL yet. Real buyers will land here only after payment. <strong>Async intake + emailed brief lock required.</strong> No live call required. Delivery: Google Drive + email.</p>
+        <h1>After checkout — send intake</h1>
+        <p class="subhead">Week clock starts when we lock your brief by email — usually within 1 business day (Asia/Shanghai). No live call required.</p>
+        <ol class="next-steps" aria-label="Post-checkout path">
+          <li>
+            <span class="ns-num" aria-hidden="true"></span>
+            <div>
+              <strong>Send intake</strong>
+              <span>Product URL, ICP, directory preference (TAAFT Basic/Max), tone, approver email, timezone, out-of-scope notes.</span>
+            </div>
+          </li>
+          <li>
+            <span class="ns-num" aria-hidden="true"></span>
+            <div>
+              <strong>Confirm brief by email</strong>
+              <span>We email a brief to lock — reply CONFIRM. Clock starts on lock. No live call required.</span>
+            </div>
+          </li>
+        </ol>
+        <p class="price" style="margin-top:1.25rem">
+          <a class="cta" href="#intake">1 · Send intake</a>
+        </p>
+        <p class="cta-note">Async intake → emailed brief lock → week clock starts. <strong>No live call required.</strong></p>
+      </header>
+
+      <section aria-labelledby="intake-title" id="intake">
+        <h2 id="intake-title">1 · Send intake</h2>
+        <p class="lede">Submit intake after pay. We email a brief to confirm; clock starts on lock. <strong>No live call required.</strong> Delivery after lock: shared Google Drive + email for approvals. Sending this form opens your email app — nothing is stored on a server.</p>
+        <form class="intake" id="intake">
+          <label>
+            Product URL
+            <input name="Product URL" type="text" inputmode="url" required placeholder="https://" />
+          </label>
+          <label>
+            ICP in one sentence
+            <input name="ICP" type="text" required />
+          </label>
+          <label>
+            Directory preference
+            <select name="Directory preference" required>
+              <option value="" disabled selected>Choose one</option>
+              <option value="TAAFT Basic">TAAFT Basic</option>
+              <option value="TAAFT Max">TAAFT Max</option>
+            </select>
+          </label>
+          <label>
+            Brand tone
+            <textarea name="Brand tone" placeholder="Voice, words to use/avoid"></textarea>
+          </label>
+          <label>
+            Approver email
+            <input name="Approver email" type="email" autocomplete="email" required />
+          </label>
+          <label>
+            Timezone
+            <input name="Timezone" type="text" required placeholder="e.g. America/Los_Angeles" />
+          </label>
+          <label>
+            Out-of-scope notes
+            <textarea name="Out-of-scope notes" placeholder="Anything we must not do or claim"></textarea>
+          </label>
+          <button type="submit" class="cta">Email this intake</button>
+        </form>
+      </section>
+
+      <section aria-labelledby="expect">
+        <h2 id="expect">What happens next</h2>
+        <ol class="steps">
+          <li><strong>Day 0</strong> Emailed brief locked (after you confirm).</li>
+          <li><strong>Days 1–6</strong> Directory filing and launch assets.</li>
+          <li><strong>Day 7</strong> Proof log: receipt or live screenshot, plus the send log.</li>
+        </ol>
+      </section>
+
+      <section id="outbound" aria-labelledby="upsell">
+        <h2 id="upsell">Launchpad Outbound</h2>
+        <p class="lede">Not in the $99 week. Weekly outbound engine — cancel anytime. <strong>$499/wk</strong>.</p>
+        <p class="outbound-acceptance" style="margin:0 0 1rem;color:var(--ink);font-size:0.95rem;line-height:1.45"><strong>Weekly acceptance (hard):</strong> approved send count · complete reply log · meeting-lead rows (email / async only — no calls). Soft: reply rate, revenue.</p>
+        <ul class="outbound-list">
+          <li><strong>ICP list</strong> — Up to 50 net-new contacts/week, reviewed before any send.</li>
+          <li><strong>Human-approved sends</strong> — Up to 30 messages/week; you approve each within 24h or it rolls.</li>
+          <li><strong>Reply log</strong> — Every reply + status in the shared Drive sheet. Meeting leads = async / email only — zero calls.</li>
+        </ul>
+        <p class="soft">Not included: paid ads, fake engagement, guaranteed meetings/revenue, auto-send without approval.</p>
+        <div class="outbound-actions" style="display:flex;flex-direction:column;align-items:flex-start;gap:0.75rem;margin-top:1rem">
+          <a class="cta" href="https://whop.com/checkout/plan_i7XB43SOY6ZJA/">Start Outbound →</a>
+          <a class="btn-quiet" href="/#outbound">Read full Outbound on the sales page</a>
+        </div>
+      </section>
+    </main>
+    <script>
+      const KICKOFF_URL = "";
+      const CONTACT_EMAIL = "launchpadweek@mail.grokbot.com";
+
+
+const ACCEPTANCE_LINES = `---
+You get: directory submit pack + filing, landing checklist, launch assets, Day-7 proof log.
+Not success: directory acceptance, rankings, revenue, impressions.
+If hard deliverables missing after brief lock: we rework once within 5 business days (Asia/Shanghai); no live call.`;
+
+const form = document.querySelector("#intake");
+form?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const data = new FormData(form);
+  const fields = [...data.entries()].map(([key, value]) => `${key}: ${value}`).join("\n");
+  const body = fields + "\n\n" + ACCEPTANCE_LINES;
+  window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Launchpad Week intake")}&body=${encodeURIComponent(body)}`;
+});
+
+    </script>
+  </body>
+</html>
