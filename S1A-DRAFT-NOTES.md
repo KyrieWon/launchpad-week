@@ -9,8 +9,8 @@
 - `/workspace/launchpad-week-success.html` — synced = success
 - `/workspace/launchpad-week-site/S1A-DRAFT-NOTES.md` — this file
 
-## Left as-is
-- `/workspace/launchpad-week-site/vercel.json` — `{ "cleanUrls": true }` only (redirects removed if present)
+## Routing
+- `vercel.json` — `cleanUrls` plus 302 `/week`, `/outbound`, `/diagnosis`, `/pricing` → `/`. `week.html` and `outbound.html` stay in the repo for reference; the redirects take precedence.
 - Archive `/workspace/launchpad-week-site/archive/2026-10-26-week-outbound/` — old Week/Outbound HTML copies kept; no live stubs stored there
 
 ## PLACEHOLDER note

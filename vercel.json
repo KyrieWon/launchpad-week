@@ -1,3 +1,9 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/week", "destination": "/", "statusCode": 302 },
+    { "source": "/outbound", "destination": "/", "statusCode": 302 },
+    { "source": "/diagnosis", "destination": "/", "statusCode": 302 },
+    { "source": "/pricing", "destination": "/", "statusCode": 302 }
+  ]
 }
