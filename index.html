@@ -720,9 +720,9 @@ body.modal-open .sticky-cta {
           <span class="cadence">one-time · report only</span>
         </div>
         <div class="cta-actions">
-          <a class="cta" data-checkout="primary" href="#waitlist-modal">Buy report — $149</a>
+          <a class="cta" data-checkout="primary" href="https://whop.com/prismengine-xyz/4-10-chinese-suppliers-comparison-report/" rel="noopener">Buy report — $149</a>
         </div>
-        <p class="cta-note">Checkout opens when the $149 plan link is live. After pay → submit intake → 48–72h after brief lock.</p>
+        <p class="cta-note">Checkout is live · $149 one-time. After pay → submit intake → 48–72h after brief lock.</p>
         <ul class="trust">
           <li>48–72h after brief lock</li>
           <li>English delivery</li>
@@ -797,7 +797,7 @@ body.modal-open .sticky-cta {
           <p class="sku-name">Desktop Research Report — $149</p>
           <p class="sku-note">Only purchasable product on this page. No A+B / A+C bundles at checkout.</p>
           <div class="cta-actions">
-            <a class="cta" data-checkout="primary" href="#waitlist-modal">Buy report — $149</a>
+            <a class="cta" data-checkout="primary" href="https://whop.com/prismengine-xyz/4-10-chinese-suppliers-comparison-report/" rel="noopener">Buy report — $149</a>
           </div>
         </div>
       </section>
@@ -864,7 +864,7 @@ body.modal-open .sticky-cta {
         <span class="amount-mini">$149</span>
         <span class="cadence-mini">Research report</span>
       </div>
-      <a class="cta" data-checkout="primary" href="#waitlist-modal">Buy report</a>
+      <a class="cta" data-checkout="primary" href="https://whop.com/prismengine-xyz/4-10-chinese-suppliers-comparison-report/" rel="noopener">Buy report</a>
     </div>
 
     <div class="modal" id="waitlist-modal" hidden>
@@ -872,7 +872,7 @@ body.modal-open .sticky-cta {
       <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="waitlist-title">
         <button type="button" class="modal-close" data-close-modal aria-label="Close">×</button>
         <h2 id="waitlist-title">Checkout opens shortly</h2>
-        <p class="modal-copy" id="waitlist-copy">$149 China Supplier Research Report — leave your email and we’ll send the live checkout link when it’s ready.</p>
+        <p class="modal-copy" id="waitlist-copy">Checkout is temporarily unavailable. Email launchpadweek@mail.grokbot.com and we’ll send you a working link.</p>
         <form class="waitlist-form" id="waitlist-form" novalidate>
           <input type="hidden" id="waitlist-tag" name="tag" value="s1a" />
           <label for="waitlist-email">Email</label>
@@ -881,7 +881,7 @@ body.modal-open .sticky-cta {
           <button type="submit" class="cta">Notify me</button>
         </form>
         <div id="waitlist-success" hidden>
-          <p class="modal-copy">Thanks — we’ll email you when checkout is live.</p>
+          <p class="modal-copy">Checkout is temporarily unavailable. Email launchpadweek@mail.grokbot.com and we’ll send you a working link.</p>
           <button type="button" class="btn-quiet" data-close-modal>Close</button>
         </div>
       </div>
@@ -946,7 +946,7 @@ body.modal-open .sticky-cta {
     if (waitlistCopy) {
       waitlistCopy.textContent = isAddon
         ? "B and C are not for sale yet. Leave your email and we’ll tell you when deeper diligence opens."
-        : "$149 China Supplier Research Report — leave your email and we’ll send the live checkout link when it’s ready.";
+        : "Checkout is temporarily unavailable. Email launchpadweek@mail.grokbot.com and we’ll send you a working link.";
     }
     openModal(waitlistModal);
   }
@@ -955,9 +955,9 @@ body.modal-open .sticky-cta {
     document.querySelectorAll("[data-checkout='primary']").forEach((link) => {
       if (checkoutLive) {
         link.href = WHOP_CHECKOUT_URL;
+        link.setAttribute("rel", "noopener");
         link.classList.remove("is-gated");
         link.removeAttribute("aria-disabled");
-        link.addEventListener("click", () => {});
       } else {
         link.href = "#waitlist-modal";
         link.classList.add("is-gated");
